@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { observer } from 'mobx-react-lite';
+import {Box} from "@material-ui/core";
+import { BrowserRouter as Router } from "react-router-dom";
+import Navbar from "./components/main/Navbar/Navbar";
+import Main from "./pages/Main";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = observer(() => {
+    return (
+
+        <>
+            <Box
+                height="100vh"
+                display="flex"
+                flexDirection="column"
+            >
+                <Router>
+                    <Navbar />
+                    <Main />
+                </Router>
+            </Box>
+        </>
   );
-}
+});
 
 export default App;

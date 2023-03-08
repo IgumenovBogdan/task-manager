@@ -9,7 +9,8 @@ const DayPicker = () => {
     const useStyles = makeStyles((theme) => ({
         day_picker: {
             display: "flex",
-            marginLeft: theme.global.spacing('base')
+            marginLeft: theme.global.spacing('base'),
+            maxHeight: 40 //not standard value, need to be added in design (maybe)
         },
         date_title: {
             fontSize: theme.global.fontsize('l'),
@@ -44,6 +45,9 @@ const DayPicker = () => {
             </Typography>
             <Box className={classes.day_picker}>
                 <span className={classes.arrow}>
+
+                    {/*todo need to refactor with normal svg icon import*/}
+
                     <svg width="12" height="21" viewBox="0 0 12 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd" d="M9.55077 19.681L0.420222 11.039C-0.140073 10.5086 -0.140073 9.64883 0.420222 9.11851L9.55077 0.476475C10.1111 -0.0538445 11.0195 -0.0538445 11.5798 0.476475C12.1401 1.00679 12.1401 1.86661 11.5798 2.39693L3.46374 10.0787L11.5798 17.7605C12.1401 18.2909 12.1401 19.1507 11.5798 19.681C11.0195 20.2113 10.1111 20.2113 9.55077 19.681Z" fill="#C3C3C3"/>
                     </svg>

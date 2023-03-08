@@ -8,6 +8,7 @@ import {withStyles} from "@material-ui/core";
 const styles = theme => ({
     tagPanel: {
         display: "flex",
+        maxHeight: theme.global.spacing('l')
     }
 });
 

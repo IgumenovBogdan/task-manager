@@ -143,6 +143,11 @@ const tokens = {
 };
 
 const theme = createTheme({
+    palette: {
+        background: {
+            default: tokens.global.white.value, // set the default background color to #ffffff
+        },
+    },
     breakpoints: {
         values: {
             mobile: 0,
@@ -178,7 +183,7 @@ const theme = createTheme({
             "type": "fontFamilies"
         },
         fontsize: (factor) => {
-            return get(tokens, `fontsize.${factor}.value`, `${factor}`);
+            return get(tokens, `fontsize.${factor}.value`, factor);
         },
         "regular": {
             "value": 400,
@@ -223,10 +228,10 @@ const theme = createTheme({
             "type": "lineHeights"
         },
         spacing: (factor) => {
-            return get(tokens, `spacing.${factor}.value`, `${factor}`);
+            return get(tokens, `spacing.${factor}.value`, factor);
         },
         radius: (factor) => {
-            return get(tokens, `radius.${factor}.value`, `${factor}`);
+            return get(tokens, `radius.${factor}.value`, factor);
         },
         "catcolors": {
             "blue": {

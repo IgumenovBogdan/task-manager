@@ -1,12 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Input} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import TaskList from "../components/main/Tasks/TaskList";
 import store from "../store";
 import {DragDropContext} from "react-beautiful-dnd";
 import {makeStyles} from "@material-ui/core/styles";
 import AddTaskIcon from "../components/icons/AddTaskIcon";
+import _ from "lodash";
+import AddTaskInput from "../components/main/Tasks/AddTaskInput";
 
 const Main = () => {
+
+    const KEY_CODE_ENTER = 13;
+    const KEY_CODE_ESC = 27;
+
 
     const [tasks, setTasks] = useState(store.initialTasks);
     const onDragEnd = (result) => {
@@ -18,7 +24,7 @@ const Main = () => {
         }
 
         // Get the task that was dragged
-        const task = tasks.find((task) => task.id === result.draggableId);
+        const task = _.find(tasks, { id: result.draggableId });
 
         // Remove the task from its original position
         const newTasks = tasks.filter((task) => task.id !== result.draggableId);
@@ -40,25 +46,6 @@ const Main = () => {
             paddingLeft: theme.global.spacing('l'),
             paddingBottom: theme.global.spacing('l'),
         },
-        addInput: {
-            fontSize: theme.global.fontsize('xxl'),
-        },
-        inputWrapper: {
-            display: "flex",
-            borderBottom: `2px solid ${theme.global.basic['3-grey'].value}`,
-            paddingBottom: theme.global.spacing('l'),
-            '&:hover': {
-                borderBottom: `2px solid ${theme.global.basic['5-grey'].value}`
-            },
-            marginTop: theme.global.spacing('l'),
-        },
-        integer: {
-            marginRight: theme.global.spacing('l'),
-            fontSize: theme.global.fontsize('l'),
-            color: theme.global.basic['5-grey'].value,
-            display: "flex",
-            alignItems: "center"
-        }
     }));
 
     const classes = useStyles();
@@ -80,34 +67,24 @@ const Main = () => {
 
     const handlePlusClick = () => {
         setIsAdded(true);
+        if (addedValue) {
+            store.addTask(addedValue);
+            setIsAdded(false);
+            setAddedValue('');
+        }
     };
 
     const [isAdded, setIsAdded] = useState(false);
     const [addedValue, setAddedValue] = useState('');
     const serialNumber = tasks.length + 1;
 
-    function addTaskInput() {
-        if (isAdded) {
-            return <div className={classes.inputWrapper}>
-                <span className={classes.integer}>{serialNumber}</span>
-                <Input
-                    autoFocus
-                    className={classes.addInput}
-                    placeholder="Add task"
-                    fullWidth
-                    disableUnderline
-                    onKeyDown={handleKeyPress}
-                    onChange={handleInputChange}
-                />
-            </div>;
-        }
-    }
-
     useEffect(() => {
         function handleKeyDown(event) {
-            if (event.keyCode === 13) { // 13 is the key code for Enter key
-                setIsAdded(true);
-            } else if (event.keyCode === 27) { // 27 is the key code for Esc key
+            if (event.keyCode === KEY_CODE_ENTER) {
+                return setIsAdded(true);
+            }
+
+            if (event.keyCode === KEY_CODE_ESC) {
                 setIsAdded(false);
                 setAddedValue('');
             }
@@ -125,7 +102,12 @@ const Main = () => {
             <DragDropContext onDragEnd={onDragEnd}>
                 <TaskList tasks={tasks} status="todo" />
             </DragDropContext>
-            {addTaskInput()}
+            <AddTaskInput
+                serialNumber={serialNumber}
+                handleInputChange={handleInputChange}
+                handleKeyPress={handleKeyPress}
+                show={isAdded}
+            />
             <Box style={{
                 marginTop: 40,
                 display: "flex",

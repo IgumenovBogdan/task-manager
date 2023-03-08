@@ -30,6 +30,9 @@ const ActionButtons = () => {
         <>
             <Box className={classes.group}>
                 <span className={classes.button}>
+
+                    {/*todo need to refactor with normal svg icon import*/}
+
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 4.57874C3.10457 4.57874 4 3.6833 4 2.57874C4 1.47417 3.10457 0.578735 2 0.578735C0.895431 0.578735 0 1.47417 0 2.57874C0 3.6833 0.895431 4.57874 2 4.57874Z" fill="#C3C3C3"/>
                         <path d="M4 9.57874C4 10.6833 3.10457 11.5787 2 11.5787C0.895431 11.5787 0 10.6833 0 9.57874C0 8.47417 0.895431 7.57874 2 7.57874C3.10457 7.57874 4 8.47417 4 9.57874Z" fill="#C3C3C3"/>

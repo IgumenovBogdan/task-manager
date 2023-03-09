@@ -2,7 +2,7 @@ import React from 'react';
 import {Input} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 
-const AddTaskInput = ({show, serialNumber, handleKeyPress, handleInputChange}) => {
+const AddTaskInput = ({show, serialNumber, handleKeyPress, handleInputChange, value}) => {
 
     const useStyles = makeStyles((theme) => ({
         addInput: {
@@ -33,6 +33,7 @@ const AddTaskInput = ({show, serialNumber, handleKeyPress, handleInputChange}) =
             <div className={classes.inputWrapper}>
                 <span className={classes.integer}>{serialNumber}</span>
                 <Input
+                    value={value}
                     autoFocus
                     className={classes.addInput}
                     placeholder="Add task"

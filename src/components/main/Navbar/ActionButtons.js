@@ -19,7 +19,9 @@ const ActionButtons = () => {
             alignItems: "center",
             cursor: "pointer",
             '&:hover': {
-                transform: 'scale(1.1)'
+                '& svg path': {
+                    fill: theme.global.brand.value
+                }
             },
         }
     }));

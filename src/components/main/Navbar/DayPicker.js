@@ -27,11 +27,11 @@ const DayPicker = () => {
             fontSize: theme.global.fontsize('base'),
             fontWeight: theme.global.regular.value,
             '&:hover': {
-                border: `1px solid ${theme.global.basic['5-grey'].value}`,
+                border: `2px solid ${theme.global.basic['3-grey'].value}`,
             },
             padding: '8px 13px 8px 11px',
             gap: 8,
-            border: `1px solid ${theme.global.basic['1-grey'].value}`,
+            border: `2px solid ${theme.global.basic['1-grey'].value}`,
             cursor: 'pointer'
         },
     }));

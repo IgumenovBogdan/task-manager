@@ -10,9 +10,6 @@ const PeriodSwitcher = () => {
             fontWeight: theme.global.regular.value,
             color: theme.global.brand.value,
             cursor: 'pointer',
-            '&:hover': {
-                transform: 'scale(1.1)'
-            },
         },
     }));
 

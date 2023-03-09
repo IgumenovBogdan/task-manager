@@ -13,9 +13,7 @@ const styles = theme => ({
         fontSize: theme.global.fontsize('base'),
         fontWeight: theme.global.regular.value,
         '&:hover': {
-            backgroundColor: theme.global.catcolors.green.salat.value,
-            color: theme.global.white.value,
-            border: null
+            border: `1px solid ${theme.global.catcolors.green.salat.value}`,
         },
         padding: '10px 14px',
         gap: 8,

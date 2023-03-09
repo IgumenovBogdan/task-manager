@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Box} from "@material-ui/core";
 import TaskList from "../components/main/Tasks/TaskList";
 import store from "../store";
@@ -65,12 +65,14 @@ const Main = () => {
         setAddedValue(event.target.value);
     }
 
+    const inputRef = useRef(null);
+
     const handlePlusClick = () => {
         setIsAdded(true);
         if (addedValue) {
             store.addTask(addedValue);
-            setIsAdded(false);
             setAddedValue('');
+            inputRef.current.focus();
         }
     };
 
@@ -107,6 +109,7 @@ const Main = () => {
                 handleInputChange={handleInputChange}
                 handleKeyPress={handleKeyPress}
                 show={isAdded}
+                value={addedValue}
             />
             <Box style={{
                 marginTop: 40,

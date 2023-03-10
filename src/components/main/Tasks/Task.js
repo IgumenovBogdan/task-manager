@@ -11,14 +11,21 @@ const Task = ({ task, isLast, index }) => {
             cursor: "pointer"
         },
         integer: {
-            marginRight: theme.global.spacing('l'),
             fontSize: theme.global.fontsize('l'),
             color: /*isFocused ? theme.global.black.value : theme.global.basic['5-grey'].value*/theme.global.basic['5-grey'].value,
             display: "flex",
-            alignItems: "center"
+            alignItems: "center",
+        },
+        integerWrapper: {
+            width: "31px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "start",
+            marginRight: theme.global.spacing('base'),
         },
         input: {
             cursor: 'pointer',
+            padding: 0
         },
         draggable: {
             display: "flex",
@@ -27,7 +34,7 @@ const Task = ({ task, isLast, index }) => {
             '&:hover': {
                 borderBottom: `2px solid ${theme.global.basic['5-grey'].value}`
             },
-            marginTop: theme.global.spacing('l'),
+            marginBottom: theme.global.spacing('l'),
         }
     }));
 
@@ -56,7 +63,9 @@ const Task = ({ task, isLast, index }) => {
                         ...provided.draggableProps.style,
                     }}
                 >
-                    <span className={classes.integer}>{serialNumber}</span>
+                    <div className={classes.integerWrapper}>
+                        <span className={classes.integer}>{serialNumber}</span>
+                    </div>
                     <Input
                         classes={{
                             root: classes.text,
